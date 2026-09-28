@@ -1,0 +1,17 @@
+# MATLAB / Octave
+*.asv
+octave-workspace
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# CAD exports (large binaries are fine here, but keep sources in SolidWorks)
+# *.step
+# *.stl
+
+# OS / editors
+.DS_Store
+.vscode/
+*.swp
