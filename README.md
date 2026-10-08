@@ -1,5 +1,7 @@
 # Clawbit
 
+[![Test kinematics](https://github.com/impateltirth/clawbit/actions/workflows/test.yml/badge.svg)](https://github.com/impateltirth/clawbit/actions/workflows/test.yml)
+
 Four-bar linkage ball sorting mechanism: designed and built in SolidWorks to differentiate balls by material, prototyped with 3D printing, with high-precision tolerance-specific components CNC laser cut across 15+ unique parts.
 
 **Stack:** SolidWorks · MATLAB · CNC laser cutting · 3D printing
@@ -11,6 +13,7 @@ Four-bar linkage ball sorting mechanism: designed and built in SolidWorks to dif
 | `analysis/four_bar_kinematics.m` | Four-bar kinematics: Grashof classification, Freudenstein position solve, rocker swing, transmission angle, coupler curve (MATLAB or Octave) |
 | `analysis/four_bar_animate.py` | Animated linkage + coupler curve trace (matplotlib) |
 | `docs/mechanism.md` | Mechanism notes, link table, design checks |
+| `docs/kinematic-schematic.md` | Four-bar topology and verification boundary |
 | `manufacturing/BOM.csv` | Part list template — fill in from SolidWorks |
 | `manufacturing/tolerances.md` | Tolerance strategy for laser-cut + printed assembly |
 | `cad/` | Export drop-point for STEP/STL/DXF/PDF |
