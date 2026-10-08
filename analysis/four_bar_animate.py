@@ -31,23 +31,34 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--save", help="save animation to file (e.g. linkage.gif)")
     ap.add_argument("--fps", type=int, default=30)
+    ap.add_argument("--r1", type=float, default=R1, help="ground length, mm")
+    ap.add_argument("--r2", type=float, default=R2, help="crank length, mm")
+    ap.add_argument("--r3", type=float, default=R3, help="coupler length, mm")
+    ap.add_argument("--r4", type=float, default=R4, help="rocker length, mm")
+    ap.add_argument("--branch", type=int, choices=(-1, 1), default=1,
+                    help="assembly branch")
     args = ap.parse_args()
 
+    linkage = Linkage(args.r1, args.r2, args.r3, args.r4)
     phis = np.linspace(0, 2 * np.pi, 181)
-    psis = np.array([solve_rocker(p) for p in phis])
+    psis = np.array([rocker_angle(linkage, p, args.branch) for p in phis])
+
+    print("links: r1=%.2f r2=%.2f r3=%.2f r4=%.2f mm | Grashof: %s"
+          % (args.r1, args.r2, args.r3, args.r4,
+             "yes" if linkage.grashof else "no"))
 
     O2 = np.array([0.0, 0.0])
-    O4 = np.array([R1, 0.0])
-    P2 = np.column_stack([R2 * np.cos(phis), R2 * np.sin(phis)])
-    P3 = O4 + np.column_stack([R4 * np.cos(psis), R4 * np.sin(psis)])
+    O4 = np.array([args.r1, 0.0])
+    P2 = np.column_stack([args.r2 * np.cos(phis), args.r2 * np.sin(phis)])
+    P3 = O4 + np.column_stack([args.r4 * np.cos(psis), args.r4 * np.sin(psis)])
     M = (P2 + P3) / 2  # coupler midpoint -> coupler curve
 
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_aspect("equal")
     ax.grid(True)
     pad = 20
-    ax.set_xlim(P2[:, 0].min() - pad, O4[0] + R4 + pad)
-    ax.set_ylim(-R2 - R4 - pad, R2 + R4 + pad)
+    ax.set_xlim(P2[:, 0].min() - pad, O4[0] + args.r4 + pad)
+    ax.set_ylim(-args.r2 - args.r4 - pad, args.r2 + args.r4 + pad)
     ax.set_xlabel("x (mm)")
     ax.set_ylabel("y (mm)")
     ax.set_title("Clawbit four-bar linkage")

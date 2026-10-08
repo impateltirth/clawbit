@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="0 0 1000 460" role="img" aria-labelledby="t d">
+  <title id="t">Clawbit four-bar linkage</title><desc id="d">Illustrative crank, coupler, rocker, and sorting gate geometry.</desc>
+  <rect width="1000" height="460" rx="24" fill="#0b1320"/>
+  <text x="50" y="65" fill="white" font-family="Segoe UI,Arial" font-size="32" font-weight="700">CLAWBIT · FOUR-BAR SORTING MECHANISM</text>
+  <line x1="160" y1="350" x2="760" y2="350" stroke="#64748b" stroke-width="10"/>
+  <line x1="220" y1="350" x2="340" y2="210" stroke="#38bdf8" stroke-width="16" stroke-linecap="round"/>
+  <line x1="340" y1="210" x2="670" y2="185" stroke="#fbbf24" stroke-width="16" stroke-linecap="round"/>
+  <line x1="670" y1="185" x2="720" y2="350" stroke="#34d399" stroke-width="16" stroke-linecap="round"/>
+  <path d="M670 185 L820 125 L850 175 L700 230 Z" fill="#c084fc" opacity=".8"/>
+  <g fill="white"><circle cx="220" cy="350" r="17"/><circle cx="340" cy="210" r="14"/><circle cx="670" cy="185" r="14"/><circle cx="720" cy="350" r="17"/></g>
+  <g fill="#cbd5e1" font-family="Segoe UI,Arial" font-size="20"><text x="190" y="400">fixed pivot</text><text x="300" y="180">crank</text><text x="470" y="175">coupler</text><text x="705" y="280">rocker</text><text x="795" y="105">gate</text></g>
+  <text x="50" y="435" fill="#94a3b8" font-family="Segoe UI,Arial" font-size="17">Illustrative geometry — replace r1–r4 with verified SolidWorks pivot measurements.</text>
+</svg>
