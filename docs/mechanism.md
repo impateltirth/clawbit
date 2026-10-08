@@ -22,9 +22,23 @@ Four-bar linkage ball sorting mechanism: a motor drives the crank through full r
 - **Rocker swing:** max(ψ) − min(ψ) sets the gate travel — size the diverter to match.
 - **Coupler curve:** the traced path of the coupler midpoint; use it to check clearances against the ball path.
 
-## Sorting principle — TODO
+## Sorting sequence and control interface
 
-Document how balls are differentiated by material here (e.g. size/weight sensing at the gate, diverter logic, throughput). The kinematics above cover the linkage; the sensing and gate sequencing still need to be written up.
+The four-bar is the gate actuator; material classification is an upstream input
+to that mechanism. A complete cycle has four explicit states:
+
+1. **Acquire:** detect one ball in the sensing pocket and prevent a second ball
+   from entering.
+2. **Classify:** convert the selected sensor signal into a route identifier.
+   Suitable sensors depend on the actual materials—for example inductive for
+   metal/non-metal, optical for colour/reflectivity, or load-cell data for mass.
+3. **Route:** command the motor to the crank angle associated with that route,
+   allow the ball to clear the gate, and enforce a timeout.
+4. **Home:** return to the known home switch before admitting the next ball.
+
+The controller should reject ambiguous readings instead of guessing, and route
+them to a reject bin. The actual sensor, thresholds, route angles, and cycle
+time remain hardware-specific and must be recorded from the built prototype.
 
 ## Manufacturing
 
