@@ -13,6 +13,7 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+from kinematics import Linkage, rocker_angle
 
 # ---- Link lengths (mm): REPLACE with measurements from your SolidWorks model ----
 R1 = 120.0  # ground (frame pivot to pivot)
@@ -23,17 +24,7 @@ R4 = 90.0   # rocker (output)
 
 def solve_rocker(phi):
     """Rocker angle (rad) for crank angle phi (rad), open assembly branch."""
-    k1 = R1 / R2
-    k2 = R1 / R4
-    k3 = (R2**2 - R3**2 + R4**2 + R1**2) / (2 * R2 * R4)
-    A = np.cos(phi) + k2
-    B = np.sin(phi)
-    C = k1 * np.cos(phi) + k3
-    disc = A**2 + B**2 - C**2
-    if disc < 0:
-        raise ValueError("cannot assemble at phi=%.1f deg" % np.degrees(phi))
-    t = (B + np.sqrt(disc)) / (A + C)
-    return 2 * np.arctan(t)
+    return rocker_angle(Linkage(R1, R2, R3, R4), phi)
 
 
 def main():
